@@ -31,6 +31,7 @@ public class EndThread {
 	public static void main(String args[]) throws InterruptedException {
 		UseThread t = new UseThread("EndThread");
 		t.start();
+//		t.setDaemon(true);
 		Thread.sleep(300);
 		t.interrupt();
 		Thread.sleep(3000);
