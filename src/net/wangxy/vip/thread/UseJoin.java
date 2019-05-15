@@ -13,8 +13,9 @@ public class UseJoin {
 			try {
 				System.out.println(thread.getName()+" will be join before "
     				+Thread.currentThread().getName());
-			
+				// 后一个线程等前一个现场结束后
 				thread.join();
+				System.out.println(Thread.currentThread().getName() + "在" + thread.getName() + "之后执行!");
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -28,6 +29,7 @@ public class UseJoin {
 		Thread previous = Thread.currentThread();//现在是主线程
         for (int i = 0; i < 10; i++) {
             //i=0,previous 是主线程，i=1;previous是i=0这个线程
+        	// 后一个线程等前一个现场结束后
             Thread thread =
                     new Thread(new JumpQueue(previous), "thead_name_" + String.valueOf(i));
             System.out.println(previous.getName()+" jump a queue the thread:"
