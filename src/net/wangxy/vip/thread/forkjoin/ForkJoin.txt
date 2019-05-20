@@ -1,0 +1,21 @@
+原理：
+通过（递归的）把问题划分为子任务，然后并行的执行这些子任务，等所有的子任务都结束的时候，
+再合并最终结果的这种方式来支持并行计算编程。总体的设计参考了为Cilk（校注1：英特尔Cilk 语言）
+设计的work-stealing框架。
+
+典型的用法如下
+Result solve(Problem problem) {
+  if (problem is small)
+      directly solve problem
+  else {
+      split problem into independent parts
+      fork new subtasks to solve each part
+      join all subtasks
+      compose result from subresults
+  }
+}
+
+Fork操作将会启动一个新的并行fork/join子任务
+Join操作会一直等待直到所有的子任务都结束
+
+双端队列
